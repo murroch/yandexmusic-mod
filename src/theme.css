@@ -1,0 +1,224 @@
+﻿#storm-wave {
+  --sw-font: "Segoe Print", "Comic Sans MS", cursive;
+  --sw-scale: clamp(12px, 1.25vw, 26px);
+  color: #fff;
+  font: normal 700 var(--sw-scale)/1.15 var(--sw-font);
+}
+#storm-wave[hidden], #storm-wave [hidden] { display: none !important; }
+#storm-wave:not([data-active="true"]) :is(.sw-background,.sw-nav,.sw-heading,.sw-lyrics,.sw-panel) { display: none; }
+.sw-background {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
+
+}
+.sw-background {
+  background: #10171a url("__STORM_BACKGROUND__") center / cover no-repeat;
+}
+.sw-background video {
+  position: absolute;
+  inset: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#storm-wave[data-motion="true"] .sw-background video[data-ready="true"] { display: block; }
+@media (prefers-reduced-motion: reduce) {
+  #storm-wave .sw-background video { display: none !important; }
+}
+.sw-nav, .sw-heading, .sw-lyrics, .sw-settings, .sw-panel {
+  position: fixed;
+  z-index: 15;
+  -webkit-app-region: no-drag;
+}
+.sw-heading { left: 51.7%; top: 7.4%; transform: translateX(-50%); pointer-events: none; }
+.sw-nav { display: grid; gap: clamp(4px, 1vh, 12px); left: .9%; top: 9.3%; }
+.sw-nav a, .sw-settings {
+  display: grid;
+  place-items: center;
+  width: clamp(28px, 3.3vw, 60px);
+  aspect-ratio: 1;
+  color: #ffffff90;
+  background: transparent;
+  border-radius: 50%;
+  text-decoration: none;
+}
+.sw-nav a[data-page="/"] { color: white; }
+.sw-nav a:hover, .sw-settings:hover { color: white; background: #ffffff18; }
+.sw-nav svg { display: block; width: clamp(16px,1.58vw,31px); height: auto; aspect-ratio: 1; }
+.sw-lyrics {
+  width: min(94vw, 1250px);
+  left: 50%;
+  bottom: 12.1%;
+  transform: translateX(-50%);
+  text-align: center;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+  text-shadow: 0 2px 14px #000b;
+}
+.sw-line { font-size: clamp(20px, 2.45vw, 52px) !important; min-height: 1.17em; }
+.sw-next { min-height: 1.15em; opacity: .52; margin-top: .45em; font-weight: 400; }
+.sw-settings {
+  right: .9%;
+  bottom: 10.4%;
+  width: clamp(20px, 1.85vw, 36px);
+  border: 1px solid #ffffff65;
+  cursor: pointer;
+}
+.sw-settings svg { width: 68%; }
+.sw-panel {
+  right: 1.4%;
+  bottom: 15%;
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 13px;
+  border: 1px solid #ffffff22;
+  background: #141418eb;
+  box-shadow: 0 12px 30px #0007;
+  font: 14px/1.35 "Segoe UI", sans-serif;
+}
+.sw-panel label { display: flex; align-items: center; gap: 8px; }
+.sw-panel button { padding: 7px; border: 0; border-radius: 6px; color: white; background: #ffffff17; cursor: pointer; }
+
+body.storm-wave-active [class*="TitleBar_root__"] {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  z-index: 30 !important;
+  background: transparent !important;
+}
+body.storm-wave-active [class*="CommonLayout_root__"] {
+  visibility: hidden;
+}
+body.storm-wave-active [class*="VibePage_playerBlock__"] { z-index: auto !important; }
+body.storm-wave-active [class*="VibePlayerBar_root__"] {
+  visibility: visible;
+  position: fixed !important;
+  left: 51.7% !important;
+  top: 45.3% !important;
+  width: min(44.5vw, 880px) !important;
+  min-width: min(310px, 82vw) !important;
+  height: auto !important;
+  transform: translateX(-50%) !important;
+  z-index: 12 !important;
+
+}
+body.storm-wave-active [class*="VibePlayerBar_progress__"] { gap: clamp(3px,.25vw,6px) !important; }
+body.storm-wave-active :is([class*="VibePlayerbarTrackName_trackNameText__"], [class*="VibePlayerbarMeta_timecodeOverlay__"], [class*="VibePlayerbarTimecodeWithOverlay_timecode__"]) {
+  font: normal 700 clamp(12px,1.25vw,26px)/1.2 "Segoe Print", "Comic Sans MS", cursive !important;
+}
+body.storm-wave-active [class*="VibePlayerControls_root__"] { margin-top: clamp(7px,.85vw,18px) !important; }
+body.storm-wave-active [class*="VibePlayerControls_playButton__"] {
+  background: #fff !important;
+  color: #666 !important;
+}
+body.storm-wave-active [class*="VibePlayerControls_playButtonIcon__"] { color: #666 !important; }
+body.storm-wave-focus [class*="VibePlayerBar_root__"] { visibility: hidden; }
+body.storm-wave-focus :is(.sw-heading,.sw-nav) { display: none; }
+
+#storm-wave :is(.sw-heading,.sw-line,.sw-next) {
+  color: #fff !important;
+  font-family: "Segoe Print", "Comic Sans MS", cursive !important;
+  font-style: normal !important;
+  font-synthesis: none;
+  line-height: 1.15 !important;
+}
+#storm-wave :is(.sw-heading,.sw-line) { font-weight: 700 !important; }
+#storm-wave :is(.sw-heading,.sw-next) { font-size: var(--sw-scale) !important; }
+#storm-wave .sw-settings {
+  appearance: none !important;
+  background: #10171a55 !important;
+  border: 1px solid #ffffff65 !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+}
+#storm-wave .sw-settings:hover { background: #ffffff18 !important; }
+#storm-wave .sw-settings svg { display: block; margin: auto; width: 62%; height: 62%; }
+body.storm-wave-active :is([class*="NotificationUpdate_"],[class*="VibePlayerBar_root__"] [class*="AlbumCover_"]) {
+  visibility: hidden !important;
+}
+body.storm-wave-active {
+  --sw-pill: clamp(34px,3.7vw,74px);
+  --sw-side: clamp(27px,2.8vw,55px);
+}
+body.storm-wave-active [class*="VibePlayerBar_progress__"],
+body.storm-wave-active :is([class*="VibePlayerbarMeta_root__"],[class*="VibePlayerbarTimecodeContent_root__"]),
+body.storm-wave-active :is([class*="VibePlayerbarMeta_center__"],[class*="VibePlayerbarTimecodeContent_center__"]) {
+  height: var(--sw-pill) !important;
+}
+body.storm-wave-active [class*="VibePlayerBar_button__"] {
+  width: var(--sw-side) !important;
+  height: var(--sw-side) !important;
+  min-width: var(--sw-side) !important;
+}
+body.storm-wave-active [class*="VibePlayerControls_root__"] {
+  gap: clamp(8px,1.05vw,20px) !important;
+}
+body.storm-wave-active [class*="VibePlayerControls_playButton__"] {
+  width: var(--sw-pill) !important;
+  height: var(--sw-pill) !important;
+  min-width: var(--sw-pill) !important;
+}
+body.storm-wave-active [class*="VibePlayerControls_skipButton__"] {
+  width: var(--sw-side) !important;
+  height: var(--sw-side) !important;
+  min-width: var(--sw-side) !important;
+}
+
+
+body.storm-wave-active [class*="VibePlayerBar_progress__"] {
+  align-items: center !important;
+}
+body.storm-wave-active :is([class*="VibePlayerbarMeta_root__"],[class*="VibePlayerbarTimecodeContent_root__"]) {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+}
+body.storm-wave-active :is([class*="VibePlayerbarMeta_center__"],[class*="VibePlayerbarTimecodeContent_center__"])[data-storm-title]:not([data-storm-title=""])::after {
+  content: attr(data-storm-title);
+  position: absolute;
+  inset: 0 9%;
+  display: block;
+  line-height: var(--sw-pill);
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  font-family: "Segoe Print", "Comic Sans MS", cursive;
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(12px,1.25vw,26px);
+  font-synthesis: none;
+}
+body.storm-wave-active [data-storm-title]:not([data-storm-title=""]) :is([class*="VibePlayerbarMeta_trackName__"],[class*="VibePlayerbarTimecodeContent_trackName__"]) {
+  opacity: 0 !important;
+}
+body.storm-wave-active [data-storm-title]:is(:hover,:focus-within,[class*="VibePlayerbarMeta_center_withTimecode__"],[class*="VibePlayerbarTimecodeContent_center_withTimecode__"])::after {
+  visibility: hidden;
+}
+body.storm-wave-active [class*="VibePlayerControls_root__"] {
+  align-items: center !important;
+  gap: clamp(8px,.95vw,18px) !important;
+}
+body.storm-wave-active :is([class*="VibePlayerBar_button__"],[class*="VibePlayerControls_root__"] button) {
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+}
+body.storm-wave-active :is([class*="VibePlayerBar_button__"],[class*="VibePlayerControls_root__"] button) > svg {
+  display: block !important;
+  width: clamp(16px,1.65vw,32px) !important;
+  height: clamp(16px,1.65vw,32px) !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+body.storm-wave-active [class*="VibePlayerControls_playButton__"] > svg {
+  width: clamp(20px,2.05vw,40px) !important;
+  height: clamp(20px,2.05vw,40px) !important;
+}
+
+
