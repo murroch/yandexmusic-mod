@@ -135,8 +135,6 @@ node src/launch.cjs
 
 <div align="center">
 
-**Сделано [murroch](https://github.com/murroch), чтобы крута было.**
-
 Неофициальный проект кастомизации Яндекс Музыки.
 
 </div>
